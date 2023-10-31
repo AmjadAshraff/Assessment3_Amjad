@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Form</title>
+  <link rel="stylesheet" href="contact.css" />
+  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<body>
+
+  <header class="header">
+
+    <a href="#" class="logo">Call Of Duty Mobile</a>
+
+    <nav class="navbar">
+      <a href="./home.html">Home</a>
+      <a href="./maps.html">Maps</a>
+      <a href="./weapons.html">Weapons</a>
+      <a href="./operators.html">Operators</a>
+      <a href="https://gamerant.com/call-of-duty-news/">More</a>
+      <a href="./contact.html">Contact Us</a>
+    </nav>
+
+  </header>
+
+  <div id="app">
+    <div class="container">
+      <span class="big-circle"></span>
+      <img src="img/shape.png" class="square" alt="" />
+      <div class="form">
+        <div class="contact-info">
+          <h3 class="title">Let's get in touch</h3>
+          <p class="text">
+            I am glad that you are a Call of duty mobile player. If you can beat me and show.
+            But please do give a tuff fight!
+          </p>
+
+          <div class="info">
+            <div class="information">
+              <img src="img/location.png" class="icon" alt="" />
+              <p>No.10, Bodiraja Mawatha Colombo 10</p>
+            </div>
+            <div class="information">
+              <img src="img/email.png" class="icon" alt="" />
+              <p>amjadashraff10@gmail.com</p>
+            </div>
+            <div class="information">
+              <img src="img/phone.png" class="icon" alt="" />
+              <p>074-196-6115</p>
+            </div>
+          </div>
+
+          <div class="social-media">
+            <p>Connect with us:</p>
+            <div class="social-icons">
+              <a href="https://www.facebook.com/callofdutymobile?mibextid=ZbWKwL">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div id="app">
+          <form @submit.prevent="submitForm">
+            <h3 class="title">Contact us</h3>
+            <div class="input-container" v-for="(input, index) in formInputs" :key="index">
+              <label :for="input.name" v-text="input.label" v-if="!input.value"></label>
+              <input v-model="input.value" type="text" :name="input.name" class="input"
+                @input="input.labelAnimated = !!input.value" />
+            </div>
+            <input type="submit" value="Send" class="btn" />
+          </form>
+          <p v-if="messageSent" class="success-message">Message sent successfully!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        formInputs: [
+          { name: 'name', label: 'Username', value: '', labelAnimated: false },
+          { name: 'email', label: 'Email', value: '', labelAnimated: false },
+          { name: 'phone', label: 'Phone', value: '', labelAnimated: false },
+          { name: 'message', label: 'Message', value: '', labelAnimated: false },
+        ],
+        messageSent: false,
+      },
+      methods: {
+        submitForm() {
+          // Simulate form submission (you can replace this with your actual submission logic)
+          this.messageSent = true;
+          setTimeout(() => {
+            location.reload(); // Reload the page after a short delay
+          }, 1000); // Adjust the delay as needed
+        },
+      },
+    });
+  </script>
+</body>
+
+</html>
